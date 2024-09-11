@@ -7,17 +7,17 @@ const arrayBoard = Array.from(Array(rows), () => new Array(columns));
 // let shipLength = 3;
 // let orientation = 'vertical'
 
-function placeShipOnBoard(arrayBoard, row, column, shipLength, orientation) {
-    for (let i = 0; i < shipLength; i++) {
+function placeShipOnBoard(ship, row, column, orientation) {
+    for (let i = 0; i < ship.length; i++) {
       if (orientation === 'horizontal') {
-        if (column + i < arrayBoard[0].length) {  
-          arrayBoard[row][column + i] = 'ship';
+        if (column + i < columns) {  
+          arrayBoard[row][column + i] = { ship: ship, part: i };
         } else {
           return "Ship can't be placed out of bounds!";
         }
       } else if (orientation === 'vertical') {
-        if (row + i < arrayBoard.length) {
-          arrayBoard[row + i][column] = 'ship';
+        if (row + i < rows) {
+          arrayBoard[row + i][column] = { ship: ship, part: i };
         } else {
           return "Ship can't be placed out of bounds!";
         }
