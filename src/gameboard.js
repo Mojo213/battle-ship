@@ -25,6 +25,21 @@ function placeShipOnBoard(arrayBoard, row, column, shipLength, orientation) {
     }
     return arrayBoard; 
   }
+
+
+  function receiveAttack(hitRow, hitColumn) {
+    let cell = arrayBoard[hitRow][hitColumn];
+  
+    if (cell && cell.ship) { 
+        cell.ship.hit();
+      arrayBoard[hitRow][hitColumn] = { ...cell, hit: true };  
+      return 'ship has been hit';
+    } else if (cell && cell.hit) {
+      return 'This part of the ship has already been hit.';
+    } else {
+      return 'Missed the ship';
+    }
+  }
   
   module.exports = placeShipOnBoard;
   
