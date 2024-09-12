@@ -1,40 +1,39 @@
 const placeShipOnBoard = require('../src/gameboard');
+const createShip = require('../src/ship');
 
 describe('gameBoard', () => {
-test('place ship on board horizontally', () => {
     const rows = 10;
     const columns = 10;
-    const arrayBoard = Array.from(Array(rows), () => new Array(columns));
+    let arrayBoard;
     let row = 2;
-    let column = 0
-    let shipLength = 3;
-    let orientation = 'horizontal'
+    let column = 0;
+    let ship = createShip(3); 
 
-    const expectedBoard = Array.from(Array(rows), () => new Array(columns));
-    expectedBoard[2][0] = 'ship';
-    expectedBoard[2][1] = 'ship';
-    expectedBoard[2][2] = 'ship';
+    beforeEach(() => {
+        arrayBoard = Array.from(Array(rows), () => new Array(columns)); 
+    });
 
-    placeShipOnBoard(arrayBoard, row, column, shipLength, orientation);
-    expect(arrayBoard).toEqual(expectedBoard);
+    test('place ship on board horizontally', () => {
+        let orientation = 'horizontal';
+
+        const expectedBoard = Array.from(Array(rows), () => new Array(columns));
+        expectedBoard[2][0] = { ship, part: 0 };
+        expectedBoard[2][1] = { ship, part: 1 };
+        expectedBoard[2][2] = { ship, part: 2 };
+
+        placeShipOnBoard(arrayBoard, ship, row, column, orientation);
+        expect(arrayBoard).toEqual(expectedBoard);
+    });
+
+    test('place ship on board vertically', () => {
+        let orientation = 'vertical';
+
+        const expectedBoard = Array.from(Array(rows), () => new Array(columns));
+        expectedBoard[2][0] = { ship, part: 0 };
+        expectedBoard[3][0] = { ship, part: 1 };
+        expectedBoard[4][0] = { ship, part: 2 };
+
+        placeShipOnBoard(arrayBoard, ship, row, column, orientation);
+        expect(arrayBoard).toEqual(expectedBoard);
+    });
 });
-test('place ship on board vertically', () => {
-    const rows = 10;
-    const columns = 10;
-    const arrayBoard = Array.from(Array(rows), () => new Array(columns));
-    let row = 2;
-    let column = 0
-    let shipLength = 3;
-    let orientation = 'vertical'
-
-    const expectedBoard = Array.from(Array(rows), () => new Array(columns));
-    expectedBoard[2][0] = 'ship';
-    expectedBoard[3][0] = 'ship';
-    expectedBoard[4][0] = 'ship';
-
-    placeShipOnBoard(arrayBoard, row, column, shipLength, orientation);
-    expect(arrayBoard).toEqual(expectedBoard);
-
-});
-
-})

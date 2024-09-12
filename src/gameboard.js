@@ -7,7 +7,7 @@ const arrayBoard = Array.from(Array(rows), () => new Array(columns));
 // let shipLength = 3;
 // let orientation = 'vertical'
 
-function placeShipOnBoard(ship, row, column, orientation) {
+function placeShipOnBoard(arrayBoard, ship, row, column, orientation) {
     for (let i = 0; i < ship.length; i++) {
       if (orientation === 'horizontal') {
         if (column + i < columns) {  
@@ -42,4 +42,7 @@ function placeShipOnBoard(ship, row, column, orientation) {
   }
   
   module.exports = placeShipOnBoard;
+    
+  
+
   
