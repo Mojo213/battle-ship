@@ -48,7 +48,14 @@ describe('gameBoard', () => {
         placeShipOnBoard(arrayBoard, ship, row, column, 'horizontal');
         receiveAttack(arrayBoard, row, column);
         let result = receiveAttack(arrayBoard, row, column);
-        expect(result).toBe('This part of the ship has already been hit.')
+        expect(result).toBe('This part of the ship has already been hit.');
+    })
+
+    test('Missed the ship', () =>{
+        placeShipOnBoard(arrayBoard, ship, row, column, 'horizontal');
+        receiveAttack(arrayBoard, 1, 0);
+        let result = receiveAttack(arrayBoard, 1, 0);
+        expect(result).toBe('Missed the ship');
     })
 
 });
