@@ -1,5 +1,6 @@
-const placeShipOnBoard = require('../src/gameboard');
+const {placeShipOnBoard, receiveAttack } = require('../src/gameboard');
 const createShip = require('../src/ship');
+
 
 describe('gameBoard', () => {
     const rows = 10;
@@ -36,4 +37,12 @@ describe('gameBoard', () => {
         placeShipOnBoard(arrayBoard, ship, row, column, orientation);
         expect(arrayBoard).toEqual(expectedBoard);
     });
+
+    test('ship has been hit', () =>{
+        placeShipOnBoard(arrayBoard, ship, row, column, 'horizontal')
+        receiveAttack(arrayBoard, row, column);
+        let cell = arrayBoard[row][column];
+        expect(cell).toEqual({...cell, hit: true});
+    })
+
 });

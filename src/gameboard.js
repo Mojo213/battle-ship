@@ -1,6 +1,6 @@
 const rows = 10;
 const columns = 10;
-const arrayBoard = Array.from(Array(rows), () => new Array(columns));
+// const arrayBoard = Array.from(Array(rows), () => new Array(columns));
 
 // let row = 2;
 // let column = 0
@@ -27,12 +27,12 @@ function placeShipOnBoard(arrayBoard, ship, row, column, orientation) {
   }
 
 
-  function receiveAttack(hitRow, hitColumn) {
-    let cell = arrayBoard[hitRow][hitColumn];
+  function receiveAttack(board, hitRow, hitColumn) {
+    let cell = board[hitRow][hitColumn];
   
     if (cell && cell.ship) { 
         cell.ship.hit();
-      arrayBoard[hitRow][hitColumn] = { ...cell, hit: true };  
+      board[hitRow][hitColumn] = { ...cell, hit: true };  
       return 'ship has been hit';
     } else if (cell && cell.hit) {
       return 'This part of the ship has already been hit.';
@@ -41,7 +41,7 @@ function placeShipOnBoard(arrayBoard, ship, row, column, orientation) {
     }
   }
   
-  module.exports = placeShipOnBoard;
+  module.exports = {placeShipOnBoard, receiveAttack};
     
   
 
