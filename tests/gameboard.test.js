@@ -44,5 +44,11 @@ describe('gameBoard', () => {
         let cell = arrayBoard[row][column];
         expect(cell).toEqual({...cell, hit: true});
     })
+    test('This part of the ship has already been hit.', () =>{
+        placeShipOnBoard(arrayBoard, ship, row, column, 'horizontal');
+        receiveAttack(arrayBoard, row, column);
+        let result = receiveAttack(arrayBoard, row, column);
+        expect(result).toBe('This part of the ship has already been hit.')
+    })
 
 });

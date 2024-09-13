@@ -29,19 +29,21 @@ function placeShipOnBoard(arrayBoard, ship, row, column, orientation) {
 
   function receiveAttack(board, hitRow, hitColumn) {
     let cell = board[hitRow][hitColumn];
-  
+
+    if (cell && cell.hit) {
+        return 'This part of the ship has already been hit.';
+    }
     if (cell && cell.ship) { 
         cell.ship.hit();
-      board[hitRow][hitColumn] = { ...cell, hit: true };  
-      return 'ship has been hit';
-    } else if (cell && cell.hit) {
-      return 'This part of the ship has already been hit.';
+        board[hitRow][hitColumn] = { ...cell, hit: true };  
+        return 'ship has been hit';
     } else {
-      return 'Missed the ship';
+        return 'Missed the ship';
     }
-  }
-  
-  module.exports = {placeShipOnBoard, receiveAttack};
+}
+
+
+module.exports = {placeShipOnBoard, receiveAttack};
     
   
 
