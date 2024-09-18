@@ -32,11 +32,24 @@ function Gameboard() {
         if (cell && cell.ship) {
             cell.ship.hit();
             arrayBoard[hitRow][hitColumn] = { ...cell, hit: true };
+            if(areAllShipsSunk()){
+                return 'ship has sunk';
+            }
             return 'Ship has been hit';
         } else {
             missedAttacks.push({ hitRow, hitColumn });
             return 'Missed the ship';
         }
+    }
+
+    function areAllShipsSunk (){
+        let ships = new Set();
+    arrayBoard.flat().forEach((cell)=> {
+    if (cell && cell.ship) {
+        ships.add(cell.ship);
+    }
+    })
+     return [...ships].every(ship => ship.isSunk() === true);
     }
 
     function getMissedAttacks() {
