@@ -13,9 +13,7 @@ describe('Gameboard', () => {
     });
 
     test('place ship on board horizontally', () => {
-        const orientation = 'horizontal';
-
-        gameBoard.placeShipOnBoard(ship, row, column, orientation);
+        gameBoard.placeShipOnBoard(ship, row, column, 'horizontal');
 
         const expectedBoard = Array.from(Array(10), () =>  Array(10));
         expectedBoard[2][0] = { ship, part: 0 };
@@ -26,9 +24,7 @@ describe('Gameboard', () => {
     });
 
     test('place ship on board vertically', () => {
-        const orientation = 'vertical';
-
-        gameBoard.placeShipOnBoard(ship, row, column, orientation);
+        gameBoard.placeShipOnBoard(ship, row, column, 'vertical');
 
         const expectedBoard = Array.from(Array(10), () =>  Array(10));
         expectedBoard[2][0] = { ship, part: 0 };
@@ -81,4 +77,10 @@ describe('Gameboard', () => {
         gameBoard.receiveAttack(row, column + 2);
         expect(gameBoard.areAllShipsSunk()).toBe(true); 
     });
+
+    test('show coordinates of missed attack', () => {
+        gameBoard.placeShipOnBoard(ship, row, column, 'horizontal');
+        gameBoard.receiveAttack(1, 1);
+        expect(gameBoard.getMissedAttacks()).toEqual([{"hitColumn": 1, "hitRow": 1}]);
+    })
 });
