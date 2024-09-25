@@ -3,12 +3,13 @@ const createShip = require('../src/ship');
 
 describe('Gameboard', () => {
     let gameBoard;
-    let ship = createShip(3);
+    let ship;
     const row = 2;
     const column = 0;
 
     beforeEach(() => {
         gameBoard = Gameboard();
+        ship = createShip(3);
     });
 
     test('place ship on board horizontally', () => {
@@ -58,4 +59,26 @@ describe('Gameboard', () => {
         expect(result).toBe('Missed the ship');
     });
 
+    test('ships are not sunk', () => {
+        let ship2 = createShip(3);
+        gameBoard.placeShipOnBoard(ship, row, column, 'horizontal');
+        gameBoard.placeShipOnBoard(ship2, 3, 0,'horizontal');
+        gameBoard.receiveAttack(row, column);
+        expect(gameBoard.areAllShipsSunk()).toBe(false);  
+    });
+
+    test('ship is not sunk after only one hit', () => {
+        gameBoard.placeShipOnBoard(ship, row, column, 'horizontal');
+        gameBoard.receiveAttack(row, column); 
+        expect(ship.isSunk()).toBe(false); 
+    });
+    
+
+    test('all ships are sunk after full attack', () => {
+        gameBoard.placeShipOnBoard(ship, row, column, 'horizontal');
+        gameBoard.receiveAttack(row, column);
+        gameBoard.receiveAttack(row, column + 1);
+        gameBoard.receiveAttack(row, column + 2);
+        expect(gameBoard.areAllShipsSunk()).toBe(true); 
+    });
 });

@@ -11,5 +11,6 @@ function createShip(length) {
       }
     };
   }
+  
 module.exports = createShip;
   
