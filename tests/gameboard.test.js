@@ -78,9 +78,20 @@ describe('Gameboard', () => {
         expect(gameBoard.areAllShipsSunk()).toBe(true); 
     });
 
+    test('some ships are sunk', () => {
+        let ship2 = createShip(4);
+        gameBoard.placeShipOnBoard(ship, row, column, 'horizontal');
+        gameBoard.placeShipOnBoard(ship2, 3, 0,'horizontal');
+        gameBoard.receiveAttack(3, 0);
+        gameBoard.receiveAttack(3, 1);
+        gameBoard.receiveAttack(3, 2);
+        gameBoard.receiveAttack(3, 3);
+        expect(gameBoard.areAllShipsSunk()).toBe(false);
+    });
+ 
     test('show coordinates of missed attack', () => {
         gameBoard.placeShipOnBoard(ship, row, column, 'horizontal');
         gameBoard.receiveAttack(1, 1);
         expect(gameBoard.getMissedAttacks()).toEqual([{"hitColumn": 1, "hitRow": 1}]);
-    })
+    });
 });
