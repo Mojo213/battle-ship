@@ -7,14 +7,20 @@ function Gameboard() {
     function placeShipOnBoard(ship, row, column, orientation) {
       for (let i = 0; i < ship.length; i++) {
         if (orientation === 'horizontal') {
-          if (column + i < columns) {  
+          if (column + i < columns) { 
+            let cell = arrayBoard[row][column + i];
+            if(!cell.ship){
             arrayBoard[row][column + i] = { ship: ship, part: i };
+            }
           } else {
             return "Ship can't be placed out of bounds!";
           }
         } else if (orientation === 'vertical') {
           if (row + i < rows) {
+            let cell = arrayBoard[row + i][column];
+            if(!cell.ship){
             arrayBoard[row + i][column] = { ship: ship, part: i }
+            }
           } else {
             return "Ship can't be placed out of bounds!";
           }
