@@ -9,18 +9,18 @@ function Gameboard() {
         if (orientation === 'horizontal') {
           if (column + i < columns) { 
             let cell = arrayBoard[row][column + i];
-            if(!cell.ship){
+            if(!cell){
             arrayBoard[row][column + i] = { ship: ship, part: i };
-            }
+            }else{return 'Ship already placed in coordinate'};
           } else {
             return "Ship can't be placed out of bounds!";
           }
         } else if (orientation === 'vertical') {
           if (row + i < rows) {
             let cell = arrayBoard[row + i][column];
-            if(!cell.ship){
+            if(!cell){
             arrayBoard[row + i][column] = { ship: ship, part: i }
-            }
+            }else{return 'Ship already placed in coordinate'};
           } else {
             return "Ship can't be placed out of bounds!";
           }

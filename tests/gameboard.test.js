@@ -94,4 +94,9 @@ describe('Gameboard', () => {
         gameBoard.receiveAttack(1, 1);
         expect(gameBoard.getMissedAttacks()).toEqual([{"hitColumn": 1, "hitRow": 1}]);
     });
+
+    test('check ships are not overlapping', () => {
+        gameBoard.placeShipOnBoard(ship, row, column, 'horizontal');
+        expect(gameBoard.placeShipOnBoard(ship,row, column, 'horizontal')).toBe('Ship already placed in coordinate')
+    });
 });
