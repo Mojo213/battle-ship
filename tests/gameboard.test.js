@@ -97,6 +97,6 @@ describe('Gameboard', () => {
 
     test('check ships are not overlapping', () => {
         gameBoard.placeShipOnBoard(ship, row, column, 'horizontal');
-        expect(gameBoard.placeShipOnBoard(ship,row, column, 'horizontal')).toBe('Ship already placed in coordinate')
+        expect(gameBoard.placeShipOnBoard(ship,row, column, 'horizontal')).toBe('Ship already placed in coordinate');
     });
 });
