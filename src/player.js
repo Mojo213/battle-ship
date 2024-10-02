@@ -5,8 +5,8 @@ function player(name) {
     return {
         name,
         placeShip: (ship, row, column, orientation) => board.placeShipOnBoard(ship, row, column, orientation),
-        attack: (opponent, row, column) => opponent.receiveAttack(row, column), 
-        getBoard: () => board.getBoard(),
+        attack: (opponent, row, column) => opponent.getBoard().receiveAttack(row, column), 
+        getBoard: () => board,
     }
 }
 
