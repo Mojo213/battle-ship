@@ -21,7 +21,7 @@ function player(name, isComputer = false) {
                 return opponent.getBoard().receiveAttack(row, column);  
             }
         }, 
-       
+        getBoard: () => board,
     };
 }
 
@@ -35,3 +35,4 @@ let hitColumn = Math.floor(Math.random() * 10);
 return hitColumn;
 }
 
+module.exports = player;
