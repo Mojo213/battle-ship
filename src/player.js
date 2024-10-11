@@ -21,7 +21,7 @@ function player(name, isComputer = false) {
                 return opponent.getBoard().receiveAttack(row, column);  
             }
         }, 
-        getBoard: () => board,
+        getBoardState: () => board.getBoard(),
     };
 }
 

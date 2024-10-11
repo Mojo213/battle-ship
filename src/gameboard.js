@@ -66,7 +66,7 @@ function Gameboard() {
       receiveAttack,
       areAllShipsSunk,
       getBoard: () => arrayBoard,
-      getMissedAttacks: () => missedAttacks,
+      getMissedAttacks: () => missedAttacks
     };
   }
   
