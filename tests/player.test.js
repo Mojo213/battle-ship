@@ -24,4 +24,27 @@ test('player can attack successfully', () => {
     expect(boardState[3][0]).toEqual({ ship: ship1, part: 1, hit: true })
 });
 
+test('computer can attack', () => {
+    let player1 = player('AI', true);
+    let player2 = player('Mojo');
+    player2.placeShip(ship1, 2, 0, 'vertical');
+    player1.attack(player2);
+    let player1BoardAttacks = player1.getAttacks();
+    expect(player1BoardAttacks.size).toBeGreaterThan(0);
+});
+
+test('computer affects opponent\'s board', () => {
+    let player1 = player('AI', true); 
+    let player2 = player('Mojo');       
+    player2.placeShip(ship1, 2, 0, 'vertical');
+    player1.attack(player2);  
+    let boardState = player2.getBoardState();  
+    let player1Attacks = player1.getAttacks();
+    let attackCoord = Array.from(player1Attacks)[0]; 
+    let [row, column] = attackCoord.split(',').map(Number);  
+    expect(boardState[row][column]).toBeDefined();  
+});
+
+
+
 });

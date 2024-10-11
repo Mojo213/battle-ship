@@ -47,6 +47,7 @@ function Gameboard() {
         return 'Ship has been hit';
       } else {
         missedAttacks.push({ hitRow, hitColumn });
+        arrayBoard[hitRow][hitColumn] = { missed: true };  
         return 'Missed the ship';
       }
     }

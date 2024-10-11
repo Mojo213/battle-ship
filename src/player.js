@@ -22,7 +22,8 @@ function player(name, isComputer = false) {
             }
         }, 
         getBoardState: () => board.getBoard(),
-        getGameBoard: () => board
+        getGameBoard: () => board,
+        getAttacks: () => attacks
     };
 }
 
