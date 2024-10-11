@@ -15,11 +15,13 @@ test('ship is placed correctly on the board', () => {
     expect(boardState[2][0]).toEqual({ ship: ship1, part: 0 });
 });
 
-
-
-
-// test('player can attack successfully', () => {
-
-// });
+test('player can attack successfully', () => {
+    let player1 = player('Mojo');
+    let player2 = player('Tom');
+    player2.placeShip(ship1, 2, 0, 'vertical');
+    player1.attack(player2, 3, 0);
+    let boardState = player2.getBoardState();
+    expect(boardState[3][0]).toEqual({ ship: ship1, part: 1, hit: true })
+});
 
 });

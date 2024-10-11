@@ -16,12 +16,13 @@ function player(name, isComputer = false) {
                 } while (attacks.has(attackCord));  
                 
                 attacks.add(attackCord); 
-                return opponent.getBoard().receiveAttack(row, column);
+                return opponent.getGameBoard().receiveAttack(row, column);
             } else {
-                return opponent.getBoard().receiveAttack(row, column);  
+                return opponent.getGameBoard().receiveAttack(row, column);  
             }
         }, 
         getBoardState: () => board.getBoard(),
+        getGameBoard: () => board
     };
 }
 
