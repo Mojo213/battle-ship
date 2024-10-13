@@ -45,6 +45,4 @@ test('computer affects opponent\'s board', () => {
     expect(boardState[row][column]).toBeDefined();  
 });
 
-
-
 });
